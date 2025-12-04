@@ -1,0 +1,94 @@
+{
+  "name": "AI Customer Support",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "62ae67ed-67b4-4fa7-b2ec-188d28470775",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d3bc53da-a3b0-4411-942c-84f958c87330",
+      "name": "Webhook",
+      "webhookId": "62ae67ed-67b4-4fa7-b2ec-188d28470775"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://10.39.1.109:3000/api/chat",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "question",
+              "value": "={{ $json.body.question }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4f8ebdd2-1b22-4f8d-b4b9-819afcae2bef",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        432,
+        0
+      ],
+      "id": "e75e8e91-b5a7-469c-9bb5-f347c7cd609c",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7005c4da-3dde-4f9f-a5c7-c22d7a52eb40",
+  "meta": {
+    "instanceId": "9923cb232e1765de70d25253b37dfb71b9ebddc817842c6150e4473b48ab7170"
+  },
+  "id": "9m3oGM1lmRCn4owu",
+  "tags": []
+}
