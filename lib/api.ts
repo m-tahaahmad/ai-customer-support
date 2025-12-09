@@ -1,6 +1,6 @@
 import type { ChatResponse, ApiError } from '@/types';
 
-const WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || 'http://localhost:5678/webhook-test/62ae67ed-67b4-4fa7-b2ec-188d28470775';
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || 'http://localhost:5678/webhook-test/62ae67ed-67b4-4fa7-b2ec-188d28470775';
 
 /**
  * Sends a message to the AI customer support API
